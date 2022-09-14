@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FlowerDetailsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleTextColor="@color/white"
+            app:expandedTitleTextColor="@color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+
+            >
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:id="@+id/toolbar_secondary"
+                app:title="Maps"
+                app:titleTextColor="@color/white"
+                app:subtitleTextColor="@color/white"
+
+                />
+
+            <ImageView
+                android:id="@+id/detail_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchorGravity="center"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="plantid"
+            android:id="@+id/detail_plantid"
+            android:fontFamily="sans-serif-black"
+            android:textSize="25dp"/>
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="watering"
+            android:id="@+id/detail_watering"
+            android:textSize="22dp"/>
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="zone Number"
+            android:id="@+id/detail_zoneNumber"
+            android:textSize="22dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_description"
+        android:text="A world map is a map of most or all of the surface of Earth. World maps, because of their scale, must deal with the problem of projection. Maps rendered in two dimensions by necessity distort the display of the three-dimensional surface of the earth. While this is true of any map, these distortions reach extremes in a world map. Many techniques have been developed to present world maps that address diverse technical and aesthetic goals.[2]
+
+Charting a world map requires global knowledge of the earth, its oceans, and its continents. From prehistory through the Middle ages, creating an accurate world map would have been impossible because less than half of Earth's coastlines and only a small fraction of its continental interiors were known to any culture. With exploration that began during the European Renaissance, knowledge of the Earth's surface accumulated rapidly, such that most of the world's coastlines had been mapped, at least roughly, by the mid-1700s and the continental interiors by the twentieth century.
+
+Maps of the world generally focus either on political features or on physical features. Political maps emphasize territorial boundaries and human settlement. Physical maps show geographical features such as mountains, soil type, or land use. Geological maps show not only the surface, but characteristics of the underlying rock, fault lines, and subsurface structures. Choropleth maps use color hue and intensity to contrast differences between regions, such as demographic or economic statistics."
+        android:textSize="20dp"/>
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
