@@ -6,10 +6,12 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.documentfile.provider.DocumentFile
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -19,7 +21,10 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.lang.reflect.Type
 import java.net.URL
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.util.concurrent.Executors
+import kotlin.io.path.Path
 
 private const val TAG = "DataManipulator"
 
@@ -52,11 +57,13 @@ object DataManipulator {
 
     private fun downloadImages(context: Context) {
         for (flower in MainActivity.flowersList) {
+
+
             var filedoesnotexist=true
             try{
                 val inputStream: InputStream? = context.contentResolver.openInputStream(Uri.parse(flower.imageUriPath))
                 inputStream?.close()
-                filedoesnotexist=false 
+                filedoesnotexist=false
             }catch (e:Exception){
 
             }
@@ -81,11 +88,13 @@ object DataManipulator {
                                 contentValues
                             )
                             fos = imageUri?.let { resolver.openOutputStream(it) }
+
                             flower.imageUriPath = imageUri?.toString()
+
                         }
                         fos?.use {
                             bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, it)
-                            AllPlantsFragment.updateItemInRV(MainActivity.flowersList.indexOf(flower))
+
                         }
                     } catch (e: Exception) {
                         e.printStackTrace()

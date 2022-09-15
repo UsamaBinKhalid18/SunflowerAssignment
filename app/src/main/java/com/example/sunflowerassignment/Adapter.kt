@@ -36,7 +36,6 @@ class Adapter(private val dataset:MutableList<Flower>, private val itemSelectLis
     override fun getItemCount(): Int=dataset.count()
 
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item =dataset[position]
         holder.plantNameText.text=item.name
@@ -44,7 +43,6 @@ class Adapter(private val dataset:MutableList<Flower>, private val itemSelectLis
             holder.favButton.setImageResource(R.drawable.heart_fill)
         holder.favButton.setOnClickListener{
             item.isFavorite=!item.isFavorite
-
             if(item.isFavorite){
                 holder.favButton.setImageResource(R.drawable.heart_fill)
                 FavoriteFragment.addFavouriteToRecycleView()

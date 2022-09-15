@@ -46,10 +46,6 @@ class AllPlantsFragment : Fragment(),ItemSelectListener {
     }
 
     override fun onClick(flower: Flower){
-        if (flower.imageUriPath == null) {
-            Toast.makeText(context,"Image not downloaded yet please wait", Toast.LENGTH_SHORT).show()
-            return
-        }
 
         startActivity(
             Intent(context,FlowerDetailsActivity::class.java).putExtra("flowerString",

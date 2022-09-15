@@ -20,7 +20,7 @@ class FlowerDetailsActivity : AppCompatActivity() {
         setSupportActionBar( findViewById(R.id.toolbar_secondary))
         findViewById<ImageView>(R.id.detail_image_view).setImageURI(Uri.parse(flower.imageUriPath))
         findViewById<TextView>(R.id.detail_plantid).text="Plant Id : ${flower.plantId}"
-        findViewById<TextView>(R.id.detail_watering).text="Water every ${flower.wateringInterval} ${resources.getQuantityString(R.plurals.day,flower.wateringInterval)} "
+        findViewById<TextView>(R.id.detail_watering).text="Water every ${flower.wateringInterval} "
         findViewById<TextView>(R.id.detail_zoneNumber).text="Zone Number : ${flower.growZoneNumber}"
         findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_secondary).title=flower.name
         findViewById<TextView>(R.id.detail_description).text=flower.description
