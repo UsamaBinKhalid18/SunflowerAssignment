@@ -6,23 +6,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import java.io.File
 
 class FavoriteFragment : Fragment(),ItemSelectListener {
 
     companion object{
         val favoriteList= mutableListOf<Flower>()
-        lateinit var recyclerView: RecyclerView
-        fun updateFavourites(){
-
-            favoriteList.clear()
-            for (flower in MainActivity.flowersList)
-                if(flower.isFavorite)
+        lateinit var favouriteRecyclerView: RecyclerView
+        fun addFavouriteToRecycleView(){
+            for (flower in MainActivity.flowersList){
+                if(flower.isFavorite && flower !in favoriteList) {
                     favoriteList.add(flower)
-            if(this::recyclerView.isInitialized)
-                recyclerView.adapter?.notifyDataSetChanged()
+                    break
+                }
+            }
+            if(this::favouriteRecyclerView.isInitialized)
+                favouriteRecyclerView.adapter?.notifyItemInserted(favoriteList.size-1)
+        }
+        fun removeFavouriteFromRecycleView(){
+
+            for (flower in favoriteList){
+                if(!flower.isFavorite){
+                    AllPlantsFragment.updateItemInRV(MainActivity.flowersList.indexOf(flower))
+
+                    break
+                }
+            }
 
 
         }
@@ -37,13 +49,17 @@ class FavoriteFragment : Fragment(),ItemSelectListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         recyclerView=view.findViewById<RecyclerView>(R.id.recycler_view)
+         favouriteRecyclerView=view.findViewById(R.id.recycler_view)
 
-        updateFavourites()
-        recyclerView.adapter=Adapter(favoriteList,this)
+        addFavouriteToRecycleView()
+        favouriteRecyclerView.adapter=Adapter(favoriteList,this)
     }
 
     override fun onClick(flower: Flower) {
+        if (flower.imageUriPath == null) {
+            Toast.makeText(context,"Image not downloaded yet please wait",Toast.LENGTH_SHORT).show()
+            return
+        }
         startActivity(
             Intent(context,FlowerDetailsActivity::class.java).putExtra("flowerString",
                 Gson().toJson(flower)))

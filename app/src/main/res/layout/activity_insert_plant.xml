@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".InsertPlantActivity">
     <com.google.android.material.appbar.AppBarLayout
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:id="@+id/layout_toolbar">
